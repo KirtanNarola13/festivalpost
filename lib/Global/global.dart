@@ -21,7 +21,7 @@ class Global {
       'allPost': [
         {
           'img':
-              'https://i.pinimg.com/564x/f3/b7/e6/f3b7e6e6351c2d1ec1bcc6933bef6a85.jpg'
+              'https://i.pinimg.com/564x/f3/b7/e6/f3b7e6e6351c2d1ec1bcc6933bef6a85.jpg',
         },
         {
           'img':

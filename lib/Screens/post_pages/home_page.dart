@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../Global/global.dart';
-import '../../Model/model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

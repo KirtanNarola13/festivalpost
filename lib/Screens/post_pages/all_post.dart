@@ -1,5 +1,5 @@
-import 'package:festivalapp/Model/model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../Global/global.dart';
 
@@ -50,122 +50,98 @@ class _AllPostsState extends State<AllPosts> {
         child: Column(
           children: [
             ...data['allPost'].map((e) {
-              return Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 10,
-                      right: 10,
-                      bottom: 10,
-                      top: 20,
-                    ),
-                    height: 300,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          e['img'],
-                        ),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('detail_page', arguments: e);
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                    bottom: 10,
+                    top: 20,
+                  ),
+                  height: 300,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        e['img'],
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          height: 30,
-                          color: Colors.grey.shade700.withOpacity(0.8),
-                          child: Text(
-                            Global.companyName,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              letterSpacing: 2,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(right: 10, left: 10),
-                          height: 30,
-                          color: Colors.grey.shade700.withOpacity(0.8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.phone_android_rounded,
-                                    color: Colors.white,
-                                    size: 18,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    Global.companyNumber,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const Icon(
-                                    Icons.email_outlined,
-                                    color: Colors.white,
-                                    size: 18,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    Global.companyEmail,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
-                  Row(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.download,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Download",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 30,
+                        color: Colors.grey.shade700.withOpacity(0.8),
+                        child: Text(
+                          Global.companyName,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            letterSpacing: 2,
                           ),
-                        ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(right: 10, left: 10),
+                        height: 30,
+                        color: Colors.grey.shade700.withOpacity(0.8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.phone_android_rounded,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  Global.companyNumber,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(
+                                  Icons.email_outlined,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  Global.companyEmail,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ],
+                ),
               );
             }),
           ],
