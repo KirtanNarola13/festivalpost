@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../../Global/global.dart';
+import '../../Model/model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,6 +44,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             alignment: Alignment.bottomCenter,
             child: IconButton(
+              splashRadius: 18,
               onPressed: () {},
               icon: Icon(
                 Icons.search,
@@ -52,6 +56,51 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       backgroundColor: Colors.white,
+      body: GridView.count(
+        primary: false,
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        crossAxisCount: 2,
+        children: Global.allPost.map((e) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed('all_posts', arguments: e);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(e['thumbnail']),
+                ),
+              ),
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 3,
+                    sigmaY: 3,
+                  ),
+                  child: Container(
+                      alignment: Alignment.center,
+                      height: 150,
+                      width: 150,
+                      child: Text(
+                        "${e['category']}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }

@@ -98,7 +98,7 @@ class _ContactInfoState extends State<ContactInfo> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      width: 90,
+                      width: 80,
                       child: ElevatedButton(
                         onPressed: () {
                           if (_contactKey.currentState!.validate()) {
