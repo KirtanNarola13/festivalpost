@@ -11,6 +11,7 @@ class CompanyDetail extends StatefulWidget {
 }
 
 class _CompanyDetailState extends State<CompanyDetail> {
+  final _NameKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,7 +24,7 @@ class _CompanyDetailState extends State<CompanyDetail> {
             SafeArea(
               child: Container(
                 height: 50,
-                child: Text(
+                child: const Text(
                   "FESTIVAL APP",
                   style: TextStyle(
                     fontSize: 16,
@@ -59,50 +60,65 @@ class _CompanyDetailState extends State<CompanyDetail> {
                       color: Colors.blue,
                       size: 50,
                     ),
-                    Column(
-                      children: [
-                        TextFormField(
-                          onSaved: (String? val) {
-                            Global.companyNameController.text = val!;
-                          },
-                          validator: (val) {
-                            if (val!.isEmpty) {
-                              return 'Please enter company name';
-                            }
-                          },
-                          controller: Global.companyNameController,
-                          decoration: const InputDecoration(
-                            hintText: 'Company Name',
-                            labelText: 'Company Name',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: 90,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                Navigator.pushReplacementNamed(
-                                    context, 'contact_info');
-                                Global.companyName =
-                                    Global.companyNameController.text;
-                                log(Global.companyName);
-                              });
+                    Form(
+                      key: _NameKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            onSaved: (String? val) {
+                              Global.companyNameController.text = val!;
                             },
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Next"),
-                                Icon(Icons.arrow_forward_ios),
-                              ],
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                            controller: Global.companyNameController,
+                            decoration: const InputDecoration(
+                              hintText: 'Company Name',
+                              labelText: 'Company Name',
+                              border: OutlineInputBorder(),
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            width: 90,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_NameKey.currentState!.validate()) {
+                                  setState(() {
+                                    Navigator.pushReplacementNamed(
+                                        context, 'contact_info');
+                                    Global.companyName =
+                                        Global.companyNameController.text;
+                                    log(Global.companyName);
+
+                                    Global.companyNameController.clear();
+                                  });
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Company Name Is Required'),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Next"),
+                                  Icon(Icons.arrow_forward_ios),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

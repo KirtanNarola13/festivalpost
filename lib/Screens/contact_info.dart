@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Global/global.dart';
 
 class ContactInfo extends StatefulWidget {
@@ -12,13 +11,14 @@ class ContactInfo extends StatefulWidget {
 class _ContactInfoState extends State<ContactInfo> {
   @override
   Widget build(BuildContext context) {
+    final _ContactKey = GlobalKey<FormState>();
     return Scaffold(
       body: Column(
         children: [
           SafeArea(
             child: Container(
               height: 50,
-              child: Text(
+              child: const Text(
                 "FESTIVAL APP",
                 style: TextStyle(
                   fontSize: 16,
@@ -41,25 +41,43 @@ class _ContactInfoState extends State<ContactInfo> {
             ),
           ),
           Expanded(
-            child: Column(
-              children: [
-                TextFormField(
-                  onSaved: (String? val) {
-                    Global.companyEmailController.text = val!;
-                  },
-                  validator: (val) {
-                    if (val!.isEmpty || ) {
-                      return 'Please enter company name';
-                    }
-                  },
-                  controller: Global.companyNameController,
-                  decoration: const InputDecoration(
-                    hintText: 'Company Name',
-                    labelText: 'Company Name',
-                    border: OutlineInputBorder(),
-                  ),
+            child: Container(
+              padding: EdgeInsets.only(
+                left: 30,
+                right: 30,
+              ),
+              child: Form(
+                key: _ContactKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      onSaved: (String? val) {
+                        Global.companyEmailController.text = val!;
+                      },
+                      controller: Global.companyNameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Company Email',
+                        labelText: 'Company Email',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    TextFormField(
+                      onSaved: (String? val) {
+                        Global.companyEmailController.text = val!;
+                      },
+                      controller: Global.companyNameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Company Email',
+                        labelText: 'Company Email',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],
