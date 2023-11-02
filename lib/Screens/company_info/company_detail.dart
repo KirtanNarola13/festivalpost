@@ -66,6 +66,33 @@ class _CompanyDetailState extends State<CompanyDetail> {
                         children: [
                           TextFormField(
                             onSaved: (String? val) {
+                              Global.userNameController.text = val!;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                            controller: Global.userNameController,
+                            decoration: const InputDecoration(
+                              labelText: 'User name',
+                              labelStyle: TextStyle(color: Colors.blue),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(25),
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.blue,
+                                    width: 5,
+                                  )),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            onSaved: (String? val) {
                               Global.companyNameController.text = val!;
                             },
                             validator: (value) {
@@ -76,9 +103,17 @@ class _CompanyDetailState extends State<CompanyDetail> {
                             },
                             controller: Global.companyNameController,
                             decoration: const InputDecoration(
-                              hintText: 'Company Name',
                               labelText: 'Company Name',
-                              border: OutlineInputBorder(),
+                              labelStyle: TextStyle(color: Colors.blue),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(25),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.blue,
+                                  width: 5,
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -96,13 +131,18 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                     Global.companyName =
                                         Global.companyNameController.text;
                                     log(Global.companyName);
+                                    Global.userName =
+                                        Global.userNameController.text;
+                                    log(Global.userName);
 
                                     Global.companyNameController.clear();
+                                    Global.userNameController.clear();
                                   });
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                      content: Text('Company Name Is Required'),
+                                      content:
+                                          Text('Company Detail Is Required'),
                                     ),
                                   );
                                 }
@@ -111,8 +151,16 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Next"),
-                                  Icon(Icons.arrow_forward_ios),
+                                  Text(
+                                    "Next",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 16,
+                                  ),
                                 ],
                               ),
                             ),
