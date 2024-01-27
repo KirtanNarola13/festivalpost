@@ -55,91 +55,105 @@ class _AllPostsState extends State<AllPosts> {
                   Navigator.of(context).pushNamed('detail_page', arguments: e);
                 },
                 child: Container(
+                  padding: EdgeInsets.all(10),
                   margin: EdgeInsets.only(
                     left: 10,
                     right: 10,
                     bottom: 10,
                     top: 20,
                   ),
-                  height: 300,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        e['img'],
-                      ),
-                    ),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 3,
+                      )
+                    ],
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 30,
-                        color: Colors.grey.shade700.withOpacity(0.8),
-                        child: Text(
-                          Global.companyName,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            letterSpacing: 2,
+                  height: 300,
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10),
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.black)),
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image(
+                            image: NetworkImage(
+                              e['img'],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(right: 10, left: 10),
-                        height: 30,
-                        color: Colors.grey.shade700.withOpacity(0.8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Stack(
                           children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.phone_android_rounded,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  Global.companyNumber,
+                            Align(
+                              alignment: Alignment(0, -1.17),
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: MediaQuery.sizeOf(context).height / 50,
+                                width: MediaQuery.sizeOf(context).width / 2,
+                                color: Colors.white,
+                                child: Text(
+                                  Global.companyName,
                                   style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    letterSpacing: 2,
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(
-                                  width: 10,
+                            Align(
+                              alignment: Alignment(0, 1.15),
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10, left: 10),
+                                height: MediaQuery.sizeOf(context).height / 50,
+                                width: MediaQuery.sizeOf(context).width / 2,
+                                color: Colors.white,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      Global.userName,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.sizeOf(context).width /
+                                          150,
+                                    ),
+                                    Container(
+                                      color: Colors.black,
+                                      height:
+                                          MediaQuery.sizeOf(context).height /
+                                              50,
+                                      width: MediaQuery.sizeOf(context).width /
+                                          400,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.sizeOf(context).width / 50,
+                                    ),
+                                    Text(
+                                      Global.companyNumber,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const Icon(
-                                  Icons.email_outlined,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  Global.companyEmail,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

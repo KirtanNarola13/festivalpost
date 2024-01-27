@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
@@ -50,9 +51,12 @@ class _DetailPageState extends State<DetailPage> {
         File('${(await getTemporaryDirectory()).path}/temp_image.png');
     await tempFile.writeAsBytes(ulist);
 
-    // Share the image with other apps
-    Share.share(
-      tempFile.path,
+    // Get the content:// URI of the temporary file
+    XFile xFile = XFile(tempFile.path);
+    log(tempFile.toString());
+    // Share the image with other apps using content:// URI
+    Share.shareXFiles(
+      [xFile],
     );
 
     // Optionally, you can delete the temporary file after sharing
@@ -72,13 +76,13 @@ class _DetailPageState extends State<DetailPage> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.blue,
             size: 18,
           ),
         ),
-        title: Text(
+        title: const Text(
           "Detail Page",
           style: TextStyle(color: Colors.blue),
         ),
@@ -86,87 +90,108 @@ class _DetailPageState extends State<DetailPage> {
       body: Column(
         children: [
           Expanded(
-            flex: 10,
+            flex: 5,
             child: RepaintBoundary(
               key: repaintboudry,
               child: Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("${data['img']}"),
-                  ),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  bottom: 10,
+                  top: 20,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      height: 30,
-                      color: Colors.grey.shade700.withOpacity(0.8),
-                      child: Text(
-                        Global.companyName,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          letterSpacing: 2,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 3,
+                    )
+                  ],
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black)),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Image(
+                          image: NetworkImage(
+                            data['img'],
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(right: 10, left: 10),
-                      height: 30,
-                      color: Colors.grey.shade700.withOpacity(0.8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Stack(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.phone_android_rounded,
-                                color: Colors.white,
-                                size: 18,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                Global.companyNumber,
+                          Align(
+                            alignment: const Alignment(0, -1.13),
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: MediaQuery.sizeOf(context).height / 50,
+                              width: MediaQuery.sizeOf(context).width / 2,
+                              color: Colors.white,
+                              child: Text(
+                                Global.companyName,
                                 style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  letterSpacing: 2,
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(
-                                width: 10,
+                          Align(
+                            alignment: const Alignment(0, 1.13),
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.only(right: 10, left: 10),
+                              height: MediaQuery.sizeOf(context).height / 50,
+                              width: MediaQuery.sizeOf(context).width / 2,
+                              color: Colors.white,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    Global.userName,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width / 150,
+                                  ),
+                                  Container(
+                                    color: Colors.black,
+                                    height:
+                                        MediaQuery.sizeOf(context).height / 50,
+                                    width:
+                                        MediaQuery.sizeOf(context).width / 400,
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width / 50,
+                                  ),
+                                  Text(
+                                    Global.companyNumber,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const Icon(
-                                Icons.email_outlined,
-                                color: Colors.white,
-                                size: 18,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                Global.companyEmail,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -177,36 +202,36 @@ class _DetailPageState extends State<DetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
                     downloadImg();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.download,
                     color: Colors.white,
                   ),
-                  label: Text("Download"),
+                  label: const Text("Download"),
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
                     shareImg();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.share,
                     color: Colors.white,
                   ),
-                  label: Text("Share"),
+                  label: const Text("Share"),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
         ],

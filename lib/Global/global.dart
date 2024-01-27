@@ -230,5 +230,32 @@ class Global {
         },
       ],
     },
+    {
+      'category': 'Republic Day',
+      'thumbnail':
+          'https://i.pinimg.com/564x/5d/07/de/5d07deac1bf7954ed76c437b8df58c20.jpg',
+      'allPost': [
+        {
+          'img':
+              'https://i.pinimg.com/564x/f9/88/3c/f9883ccf33f46e5f9d0c5fb7d56d1888.jpg',
+        },
+        {
+          'img':
+              'https://img.freepik.com/free-vector/26th-january-happy-republic-day-wishes-card-with-indian-flag_1017-42371.jpg',
+        },
+        {
+          'img':
+              'https://thumbs.dreamstime.com/b/republic-day-greeting-butterfly-stock-vector-47549898.jpg',
+        },
+        {
+          'img':
+              'https://i.pinimg.com/564x/98/c8/e0/98c8e040fc8d4e08390059385f9c6bb4.jpg',
+        },
+        {
+          'img':
+              'https://i.pinimg.com/564x/88/1b/bd/881bbd50fcfe50acc89f4c984aef6e70.jpg',
+        },
+      ],
+    },
   ];
 }

@@ -39,6 +39,8 @@ dependencies:
   image_gallery_saver: ^2.0.3
   share_plus: ^7.2.1
   path_provider: ^2.1.1
+  file:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
