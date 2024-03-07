@@ -257,5 +257,32 @@ class Global {
         },
       ],
     },
+    {
+      'category': 'Mahashivratri',
+      'thumbnail':
+          'https://i.pinimg.com/736x/8b/e6/1e/8be61edf526f098545b77f400159ce02.jpg',
+      'allPost': [
+        {
+          'img':
+              'https://i.pinimg.com/736x/bf/d3/d7/bfd3d77630a676f66245dad111bd6a76.jpg',
+        },
+        {
+          'img':
+              'https://i.pinimg.com/736x/16/8c/a2/168ca2b545cd49babf691e5ea89739e9.jpg',
+        },
+        {
+          'img':
+              'https://i.pinimg.com/736x/4f/df/db/4fdfdbaf81e2562682e69aedf03f8335.jpg',
+        },
+        {
+          'img':
+              'https://i.pinimg.com/736x/97/4d/74/974d749765362adf4bdbc3fd6f41d485.jpg',
+        },
+        {
+          'img':
+              'https://i.pinimg.com/736x/55/57/69/5557696ef7c2c7d3d05947cdcc69a4c4.jpg',
+        },
+      ],
+    },
   ];
 }

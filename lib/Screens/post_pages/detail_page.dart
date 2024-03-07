@@ -159,7 +159,7 @@ class _DetailPageState extends State<DetailPage> {
                                     Global.userName,
                                     style: const TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 14,
                                     ),
                                   ),
                                   SizedBox(
@@ -181,7 +181,7 @@ class _DetailPageState extends State<DetailPage> {
                                     Global.companyNumber,
                                     style: const TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 14,
                                     ),
                                   ),
                                 ],

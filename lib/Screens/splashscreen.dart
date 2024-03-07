@@ -15,28 +15,10 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String userName = prefs.getString('userName') ?? '';
-    String companyName = prefs.getString('companyName') ?? '';
-    String companyNumber = prefs.getString('companyNumber') ?? '';
-
-    Timer(const Duration(seconds: 3), () {
-      if (userName.isNotEmpty &&
-          companyName.isNotEmpty &&
-          companyNumber.isNotEmpty) {
-        // Details are already submitted, navigate to home page
-        Navigator.pushReplacementNamed(context, 'home_page');
-      } else {
-        // Details are not submitted, navigate to the information page
-        Navigator.pushReplacementNamed(context, 'company_detail');
-      }
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, 'company_detail');
+    });
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(

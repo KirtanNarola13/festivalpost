@@ -120,7 +120,7 @@ class _AllPostsState extends State<AllPosts> {
                                       Global.userName,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 16,
+                                        fontSize: 14,
                                       ),
                                     ),
                                     SizedBox(
@@ -143,7 +143,7 @@ class _AllPostsState extends State<AllPosts> {
                                       Global.companyNumber,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 16,
+                                        fontSize: 14,
                                       ),
                                     ),
                                   ],
